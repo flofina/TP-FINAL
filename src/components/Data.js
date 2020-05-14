@@ -22,7 +22,12 @@ const DataContainer = styled.section`
   }
 `;
 
-const Data = () => {
+const Data = ({results}) => {
+
+  console.log(results)
+
+  const cardData = results;
+
   return (
     <DataContainer>
       <div className='encabezado'>
@@ -30,11 +35,9 @@ const Data = () => {
         <p>FLECHA</p>
       </div>
       <div className='cards'>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {/* aca tengo que hacer el mapeo */}
+        <Card infoCard={cardData}/>
+        
       </div>
     </DataContainer>
   );

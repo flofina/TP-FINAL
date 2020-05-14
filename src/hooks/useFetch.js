@@ -8,7 +8,7 @@ const useFetch = (datoABuscar) => {
 
     fetch(`${datoABuscar}`)
     .then(res => res.json())
-    .then(data => setData(data.results.id))
+    .then(data => setData(data.results))
   }, [datoABuscar]);
 
   console.log(data)
@@ -16,3 +16,4 @@ const useFetch = (datoABuscar) => {
 };
 
 export default useFetch;
+

@@ -17,12 +17,15 @@ const CardContainer = styled.article`
   }
 `;
 
-const Card = () => {
+const Card = (props) => {
+
+  console.log(props.results);
+
   return (
     <CardContainer>
       <div className='card-img'>CARD</div>
       <div className='card-title'>
-        <h3>Titulo</h3>
+        <h3>{props.results}</h3>
         <div className='stars'>ESTRELLAS</div>
         </div>
     </CardContainer>
