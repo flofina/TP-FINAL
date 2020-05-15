@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import useFetch from '../hooks/useFetch';
+
 
 const MainContainer = styled.main`
   padding: 50px;
@@ -39,13 +41,14 @@ const MainContainer = styled.main`
   }
 `;
 
-const Main = () => {
+const Main = ({results}) => {
+
   return (
     <MainContainer>
       <div className='background-img'>
         {/* <img src={} alt={} /> */}
         <div className='recommended-data'>
-          <h2>Titulo</h2>
+  <h2>titulo {}</h2>
           <div className='rating'>
             <div className='stars'>ESTRELLAS</div>
             <div className='rating-info'>

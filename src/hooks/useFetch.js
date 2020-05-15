@@ -11,9 +11,7 @@ const useFetch = (datoABuscar) => {
     .then(data => setData(data.results))
   }, [datoABuscar]);
 
-  console.log(data)
   return data;
 };
 
 export default useFetch;
-
