@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import useFetch from '../hooks/useFetch';
 
+import Rating from './Rating';
 
 const MainContainer = styled.main`
   padding: 50px;
@@ -41,33 +42,45 @@ const MainContainer = styled.main`
   }
 `;
 
-const Main = ({results}) => {
+const Main = ({results, genres}) => {
+
+console.log(results)
 
   return (
+
     <MainContainer>
+
+    {results && (
+    
       <div className='background-img'>
-        {/* <img src={} alt={} /> */}
+        <img src={'https://image.tmdb.org/t/p/w500'+ results.backdrop_path} alt={results.title} />
         <div className='recommended-data'>
-  <h2>titulo {}</h2>
-          <div className='rating'>
-            <div className='stars'>ESTRELLAS</div>
-            <div className='rating-info'>
-              <p>XX Reviews</p>
-              <p>Season XX</p>
+          <h2>{results.title}</h2>
+
+          <Rating ratingInfo={results.vote_average} />
+
+            <div className='movie-info'>
+              <p>DURACION</p>
+
+              <p>{results.genre_ids.join(', ')}</p>
+              
+              <p>{results.release_date.split("-", 1)}</p>
               <p>AAAA</p>
               <p>Clasificacion</p>
             </div>
           </div>
           <div className='sinopsis'>
-            <p>SINOPSIS</p>
+            <p>{results.overview}</p>
           </div>
           <button type='button'>
             <div>ICONO</div>
             <h4>ver Trailer</h4>
           </button>
         </div>
-      </div>
-    </MainContainer>
+    )}
+
+</MainContainer>
+
   );
 }
 

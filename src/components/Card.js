@@ -1,22 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Star } from "@styled-icons/material/Star";
-import { StarHalf } from "@styled-icons/material/StarHalf";
-
-export const StarIcon = styled(Star)`
-color: #2196f3;
-width: 20px;
-height: 20px;
-padding: 5px;
-`
-
-export const StarHalfIcon = styled(StarHalf)`
-color: #2196f3;
-width: 20px;
-height: 20px;
-padding: 5px;
-`
+import Rating from './Rating';
 
 const CardContainer = styled.article`
   margin-bottom: 20px;
@@ -58,7 +43,7 @@ const Card = ({info}) => {
         <img src={'https://image.tmdb.org/t/p/w500'+ info.poster_path} alt={info.title} />
       </div>
       <div className='card-title'>
-        <div className='stars'><StarIcon /><StarIcon /><StarIcon /><StarIcon /></div>
+        <Rating ratingInfo={info.vote_average} />
         <h3>{info.title}{info.name}</h3>
       </div>
     </CardContainer>

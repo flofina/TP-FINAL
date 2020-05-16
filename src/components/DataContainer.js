@@ -27,7 +27,6 @@ const Data = styled.section`
     }
   }
   .cards {
-    
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
