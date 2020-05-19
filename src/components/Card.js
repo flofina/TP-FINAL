@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Rating from './Rating';
@@ -24,13 +24,21 @@ const CardContainer = styled.article`
     }
   }
   .card-title {
-    .stars {
-      margin: 15px 0px;
+    .rating {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 50px;
+      .stars {
+      margin: 0px 15px 0px 0px;
     }
+    }
+    
     h3 {
       font-weight: 200;
       width: 265px;
-      margin-top: 10px;
+      height: 70px;
+      margin: 10px 0px 0px 0px;
     }
   }
 `;

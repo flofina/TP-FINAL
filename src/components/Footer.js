@@ -59,6 +59,8 @@ const FooterContainer = styled.footer`
     flex-direction: column;
     align-items: center;
     p {
+      color: #dcddde87;
+      font-size: 16px;
       margin: 5px;
     }
   }

@@ -13,7 +13,7 @@ padding: 10px;
 `
 
 const Data = styled.section`
-  padding: 50px 50px 100px 50px;
+  padding: 30px 50px 80px 50px;
   background-color: #23272a;
   height: 550px;
   overflow: hidden;
@@ -21,6 +21,7 @@ const Data = styled.section`
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: 100px;
     h3 {
       font-size: 32px;
       font-weight: 300;
@@ -34,14 +35,14 @@ const Data = styled.section`
   }
 `;
 
-const DataContainer = ({results, tipo}) => {
+const DataContainer = ({results, titulo}) => {
 
   const cardData = results;
 
   return (
     <Data>
       <div className='encabezado'>
-        <h3>{tipo} que son tendencia</h3>
+        <h3>{titulo}</h3>
         <div className='icon'><ArrowIcon /></div>
       </div>
       <div className='cards'>

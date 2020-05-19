@@ -1,10 +1,16 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
+import Homepage from './Home.js';
+import Peliculas from './Peliculas.js';
+import Series from './Series.js';
+
 import styled from "styled-components";
 
 import { Home } from "@styled-icons/feather/Home";
 import { Video } from "@styled-icons/feather/Video";
 import { Tv } from "@styled-icons/feather/Tv";
-import { Search } from "@styled-icons/feather/Search"
+import { Search } from "@styled-icons/feather/Search";
 
 export const HomeIcon = styled(Home)`
 color: #dcddde;
@@ -79,19 +85,26 @@ const NavContainer = styled.nav`
 
 const Nav = () => {
   return (
-    <NavContainer>
-      <div className='menu-icons'>
-        <div className='icon'><HomeIcon /></div>
-        <div className='icon'><VideoIcon /></div>
-        <div className='icon'><TvIcon /></div>
-      </div>
-      <div className='search-bar'>
-        <form>
-        <div className='icon'><SearchIcon /></div>
-          <input type='text' name='search' placeholder='Búsqueda...' />
-        </form>
-      </div>
-    </NavContainer>
+    <Router>
+      <NavContainer>
+        <div className='menu-icons'>
+          <Link to='/'><div className='icon'><HomeIcon /></div></Link>
+          <Link to='/peliculas'><div className='icon'><VideoIcon /></div></Link>
+          <Link to='/series'><div className='icon'><TvIcon /></div></Link>
+        </div>
+        <div className='search-bar'>
+          <form>
+          <div className='icon'><SearchIcon /></div>
+            <input type='text' name='search' placeholder='Búsqueda...' />
+          </form>
+        </div>
+      </NavContainer>
+      <Switch>
+        <Route exact path='/' component={Homepage}></Route>
+        <Route path='/peliculas' component={Peliculas}></Route>
+        <Route path='/series' component={Series}></Route>
+      </Switch>
+    </Router>
   );
 }
 
