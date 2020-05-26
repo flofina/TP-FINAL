@@ -35,16 +35,16 @@ const Rating = ({ratingInfo}) => {
       <StarsContainer>       
         <div className='rating'>
           <div className='stars'>
-            <p>{ratingInfo > 0 && ratingInfo < 1.7 ? <><StarHalfIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /></> : ''}</p>        
-            <p>{ratingInfo > 1.8 && ratingInfo <= 2 ? <><StarIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /></> : ''}</p>
-            <p>{ratingInfo > 2 && ratingInfo < 3.7 ? <><StarIcon /><StarHalfIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /></> : ''}</p>
-            <p>{ratingInfo > 3.8 && ratingInfo <= 4 ? <><StarIcon /><StarIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /></> : ''}</p>
-            <p>{ratingInfo > 4 && ratingInfo < 5.7 ? <><StarIcon /><StarIcon /><StarHalfIcon /><StarBorderIcon /><StarBorderIcon /></> : ''}</p>
-            <p>{ratingInfo > 5.8 && ratingInfo <= 6 ? <><StarIcon /><StarIcon /><StarIcon /><StarBorderIcon /><StarBorderIcon /></> : ''}</p>
-            <p>{ratingInfo > 6 && ratingInfo < 7.7 ? <><StarIcon /><StarIcon /><StarIcon /><StarHalfIcon /><StarBorderIcon /></> : ''}</p>
-            <p>{ratingInfo > 7.8 && ratingInfo <= 8 ? <><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarBorderIcon /></> : ''}</p>
-            <p>{ratingInfo > 8 && ratingInfo < 9.7 ? <><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarHalfIcon /></> : ''}</p>
-            <p>{ratingInfo > 9.8 && ratingInfo <= 10 ? <><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarIcon /></> : ''}</p>
+            <p>{ratingInfo > 0 && ratingInfo <= 1.5 ? <><StarHalfIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /></> : ''}</p>        
+            <p>{ratingInfo > 1.5 && ratingInfo <= 2 ? <><StarIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /></> : ''}</p>
+            <p>{ratingInfo > 2 && ratingInfo <= 3.5 ? <><StarIcon /><StarHalfIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /></> : ''}</p>
+            <p>{ratingInfo > 3.5 && ratingInfo <= 4 ? <><StarIcon /><StarIcon /><StarBorderIcon /><StarBorderIcon /><StarBorderIcon /></> : ''}</p>
+            <p>{ratingInfo > 4 && ratingInfo <= 5.5 ? <><StarIcon /><StarIcon /><StarHalfIcon /><StarBorderIcon /><StarBorderIcon /></> : ''}</p>
+            <p>{ratingInfo > 5.5 && ratingInfo <= 6 ? <><StarIcon /><StarIcon /><StarIcon /><StarBorderIcon /><StarBorderIcon /></> : ''}</p>
+            <p>{ratingInfo > 6 && ratingInfo <= 7.5 ? <><StarIcon /><StarIcon /><StarIcon /><StarHalfIcon /><StarBorderIcon /></> : ''}</p>
+            <p>{ratingInfo > 7.5 && ratingInfo <= 8 ? <><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarBorderIcon /></> : ''}</p>
+            <p>{ratingInfo > 8 && ratingInfo <= 9.5 ? <><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarHalfIcon /></> : ''}</p>
+            <p>{ratingInfo > 9.5 && ratingInfo <= 10 ? <><StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarIcon /></> : ''}</p>
           </div>
           <div className='rating-info'>
             <p>{ratingInfo}</p>

@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Homepage from './Home.js';
 import Peliculas from './Peliculas.js';
 import Series from './Series.js';
+import VerMas from './VerMas.js';
+import Overview from './Overview.js';
 
 import styled from "styled-components";
 
@@ -17,6 +19,9 @@ color: #dcddde;
 width: 30px;
 height: 30px;
 padding: 10px;
+:hover {
+  color: #2196f3;
+}
 `
 
 export const VideoIcon = styled(Video)`
@@ -25,6 +30,9 @@ width: 34px;
 height: 34px;
 padding: 10px;
 margin-top: 5px;
+:hover {
+  color: #2196f3;
+}
 `
 
 export const TvIcon = styled(Tv)`
@@ -32,6 +40,9 @@ color: #dcddde;
 width: 30px;
 height: 30px;
 padding: 10px;
+:hover {
+  color: #2196f3;
+}
 `
 
 export const SearchIcon = styled(Search)`
@@ -84,6 +95,7 @@ const NavContainer = styled.nav`
 `;
 
 const Nav = () => {
+
   return (
     <Router>
       <NavContainer>
@@ -103,6 +115,8 @@ const Nav = () => {
         <Route exact path='/' component={Homepage}></Route>
         <Route path='/peliculas' component={Peliculas}></Route>
         <Route path='/series' component={Series}></Route>
+        <Route path='/:categoria/:tipo/' component={VerMas}></Route>
+        <Route path='/:categoria/:id/' component={Overview}></Route>
       </Switch>
     </Router>
   );

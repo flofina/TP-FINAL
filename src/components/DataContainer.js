@@ -1,7 +1,9 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
 import styled from 'styled-components';
 
-import Card from './Card.js'
+import Card from './Card.js';
 
 import { ArrowRight } from "@styled-icons/feather/ArrowRight";
 
@@ -35,22 +37,28 @@ const Data = styled.section`
   }
 `;
 
-const DataContainer = ({results, titulo}) => {
-
+const DataContainer = ({results, titulo, categoria, tipo}) => {
+  
   const cardData = results;
 
   return (
-    <Data>
-      <div className='encabezado'>
-        <h3>{titulo}</h3>
-        <div className='icon'><ArrowIcon /></div>
-      </div>
-      <div className='cards'>
-        {cardData.map(cardInfo => (
-          <Card key={cardInfo.id} info={cardInfo} />
-        ))}
-      </div>
-    </Data>
+    <>
+      { results && (
+        <Data>
+          <div className='encabezado'>
+            <h3>{titulo}</h3>
+            <div className='icon'><Link to={categoria + '/' + tipo}><ArrowIcon /></Link></div>
+          </div>
+          <div className='cards'>
+            
+            {cardData.map(cardInfo => (
+              <Link to='/overview'><Card key={cardInfo.id} info={cardInfo} /></Link>
+            ))}
+            
+          </div>
+        </Data>  
+      )}
+    </>
   );
 }
 

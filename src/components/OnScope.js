@@ -20,7 +20,7 @@ width: 100%;
 display: flex;
 flex-direction: row;
 align-items: center;
-  .recommended-data {
+  .on-scope-data {
     padding: 50px 0px 50px 50px;
     margin-right: 2px;
     width: 70%;
@@ -97,7 +97,7 @@ align-items: center;
   }
 `;
 
-const Main = ({results, genres}) => {
+const Main = ({results}) => {
 
   return (
 
@@ -105,7 +105,7 @@ const Main = ({results, genres}) => {
 
     {results && (
     <>
-      <div className='recommended-data'>
+      <div className='on-scope-data'>
         <h1>{results.title}</h1>
         <div className='movie-info'>
           <Rating ratingInfo={results.vote_average} />

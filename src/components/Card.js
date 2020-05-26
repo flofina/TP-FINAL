@@ -1,4 +1,7 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 import Rating from './Rating';
@@ -31,9 +34,8 @@ const CardContainer = styled.article`
       height: 50px;
       .stars {
       margin: 0px 15px 0px 0px;
+      }
     }
-    }
-    
     h3 {
       font-weight: 200;
       width: 265px;
@@ -45,6 +47,8 @@ const CardContainer = styled.article`
 
 const Card = ({info}) => {
 
+ 
+
   return (
     <CardContainer>
       <div className='card-img'>
@@ -54,6 +58,7 @@ const Card = ({info}) => {
         <Rating ratingInfo={info.vote_average} />
         <h3>{info.title}{info.name}</h3>
       </div>
+      
     </CardContainer>
   );
 }

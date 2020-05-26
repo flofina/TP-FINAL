@@ -12,10 +12,10 @@ const Peliculas = () => {
 
   return (
     <>
-      <DataContainer results={popular} titulo={'Películas populares'}/>
-      <DataContainer results={topRated} titulo={'Películas con mejores críticas'}/>
-      <DataContainer results={upcoming} titulo={'Películas a estrenarse'}/>
-      <DataContainer results={nowPlaying} titulo={'Películas en cines'}/>
+      <DataContainer results={popular} titulo={'Películas populares'} categoria={'movie'} tipo={'popular'} />      
+      <DataContainer results={topRated} titulo={'Películas con mejores críticas'} categoria={'movie'} tipo={'top_rated'} id={'id?'}/>
+      <DataContainer results={upcoming} titulo={'Películas a estrenarse'} categoria={'movie'} tipo={'upcoming'} id={'id?'}/>
+      <DataContainer results={nowPlaying} titulo={'Películas en cines'} categoria={'movie'} tipo={'now_playing'} id={'id?'}/>
     </>
   );
 }
