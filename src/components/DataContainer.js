@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -50,11 +50,9 @@ const DataContainer = ({results, titulo, categoria, tipo}) => {
             <div className='icon'><Link to={categoria + '/' + tipo}><ArrowIcon /></Link></div>
           </div>
           <div className='cards'>
-            
             {cardData.map(cardInfo => (
-              <Link to='/overview'><Card key={cardInfo.id} info={cardInfo} /></Link>
+              <Card key={cardInfo.id} info={cardInfo} categoria={categoria}/>
             ))}
-            
           </div>
         </Data>  
       )}

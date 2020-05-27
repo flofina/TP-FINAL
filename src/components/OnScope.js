@@ -97,7 +97,7 @@ align-items: center;
   }
 `;
 
-const Main = ({results}) => {
+const Main = ({results, resultsOverview, genres}) => {
 
   return (
 
@@ -132,6 +132,36 @@ const Main = ({results}) => {
       </>
     )}
 
+{resultsOverview && genres && (
+    <>
+      <div className='on-scope-data'>
+        <h1>{resultsOverview.title}</h1>
+        <div className='movie-info'>
+          <Rating ratingInfo={resultsOverview.vote_average} />
+          <div className='movie-attributes'>
+            <p>{resultsOverview.runtime} min</p>
+            <div className='movie-genres'>
+              {genres.map(genre => (
+                <p key={genre.id}>{genre.name}</p>
+              ))}
+            </div>  
+            <p>{resultsOverview.release_date.split("-", 1)}</p>
+          </div>
+        </div>
+        <div className='sinopsis'>
+          <p>{resultsOverview.tagline}</p>
+        </div>
+        <button type='button'>
+        <PlayIcon />
+        <h3>ver Trailer</h3>
+      </button>
+      </div>
+      <div className='background-img'>
+        <img src={'https://image.tmdb.org/t/p/original'+ resultsOverview.backdrop_path} alt={resultsOverview.title} />
+        <div className='linear-gradient'></div>
+      </div>
+      </>
+    )}
 </MainContainer>
 
   );

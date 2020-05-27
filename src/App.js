@@ -10,6 +10,10 @@ const Body = styled.div`
   font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
+  a {
+    text-decoration: none;
+    color: #dcddde;
+  }
 `;
 
 const App = () => {

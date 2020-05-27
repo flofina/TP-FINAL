@@ -6,9 +6,8 @@ import { useParams } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import DataContainer from './DataContainer';
-
 import Card from './Card';
+import Overview from './Overview.js';
 
 const Data = styled.section`
   padding: 30px 50px 80px 50px;
@@ -33,17 +32,21 @@ const Data = styled.section`
 `;
 
 const VerMas = () => {
-
+console.log('estoy en ver mAS')
   let titulo = '';
 
   const params = useParams();
-console.log(params)
+
   if (params.categoria === 'trending' && params.tipo === 'movie') {
-    titulo = 'Películas que son tendencia';
     params.tipo = 'movie/week';
   } else if (params.categoria === 'trending' && params.tipo === 'tv') {
-    titulo = 'Series que son tendencia';
     params.tipo = 'tv/week';
+  }; 
+
+  if (params.categoria === 'trending' && params.tipo === 'movie/week') {
+    titulo = 'Películas que son tendencia';
+  } else if (params.categoria === 'trending' && params.tipo === 'tv/week') {
+    titulo = 'Series que son tendencia';
   }; 
 
   if (params.categoria === 'movie' && params.tipo === 'popular') {
@@ -62,25 +65,31 @@ console.log(params)
     titulo = 'Series con mejores críticas';
   } else if (params.categoria === 'tv' && params.tipo === 'on_the_air') {
     titulo = 'Series al aire';
+  } else if (params.categoria === 'tv' && params.tipo === 'airing_today') {
+    titulo = 'Series actuales';
   };
 
   const verMasData = useFetch(`https://api.themoviedb.org/3/${params.categoria}/${params.tipo}?api_key=cdce5dbaf6cab456cd34d73a9db1ffb4`);
 
-  console.log(verMasData)
-  
   return (
     <>
-      <Data>
-        <div className='encabezado'>
-          <h3>{titulo}</h3>
-          <div className='icon'></div>
-        </div>
-        <div className='cards'>
-           {verMasData.map(cardInfo => (
-          <Link to={params.categoria + '/' + params.tipo}><Card key={cardInfo.id} info={cardInfo} /></Link>
-          ))}
-        </div>
+      {verMasData && (
+        <Data>
+          <div className='encabezado'>
+            <h3>{titulo}</h3>
+            <div className='icon'></div>
+          </div>
+          <div className='cards'>
+            {verMasData.map(cardInfo => (
+              <Card key={cardInfo.id} info={cardInfo} />
+            ))}
+          </div>
       </Data>
+      )}
+
+      <Switch>
+        <Route path='/:categoria/:id/' component={Overview}></Route>
+      </Switch>
     </>
   );
 }

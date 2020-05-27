@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -47,18 +46,17 @@ const CardContainer = styled.article`
 
 const Card = ({info}) => {
 
- 
-
   return (
     <CardContainer>
-      <div className='card-img'>
-        <img src={'https://image.tmdb.org/t/p/w500'+ info.poster_path} alt={info.title} />
-      </div>
-      <div className='card-title'>
-        <Rating ratingInfo={info.vote_average} />
-        <h3>{info.title}{info.name}</h3>
-      </div>
-      
+      <Link to={info.media_type + '/' + info.id} key={info.id}>
+        <div className='card-img'>
+          <img src={'https://image.tmdb.org/t/p/w500'+ info.poster_path} alt={info.title} />
+        </div>
+        <div className='card-title'>
+          <Rating ratingInfo={info.vote_average} />
+          <h3>{info.title}{info.name}</h3>
+        </div>
+      </Link>
     </CardContainer>
   );
 }

@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
 
-const useFetch = (datoABuscar) => {
+const useFetchData = (datoABuscar) => {
 
   const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch(`${datoABuscar}`)
     .then(res => res.json())
-    .then(data => setData(data.results))
+    .then(data => setData(data))
   }, [datoABuscar]);
 
   return data;
 };
 
-export default useFetch;
+export default useFetchData;
