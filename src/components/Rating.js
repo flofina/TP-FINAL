@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Star } from "@styled-icons/material/Star";
-import { StarHalf } from "@styled-icons/material/StarHalf";
-import { StarBorder } from "@styled-icons/material/StarBorder";
+import { Star } from '@styled-icons/material/Star';
+import { StarHalf } from '@styled-icons/material/StarHalf';
+import { StarBorder } from '@styled-icons/material/StarBorder';
 
 export const StarIcon = styled(Star)`
 color: #2196f3;
@@ -56,6 +56,4 @@ const Rating = ({ratingInfo}) => {
   }
   
   export default Rating;
-  
-
   

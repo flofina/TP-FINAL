@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { FacebookSquare } from "@styled-icons/fa-brands/FacebookSquare";
-import { Twitter } from "@styled-icons/fa-brands/Twitter";
-import { Instagram } from "@styled-icons/fa-brands/Instagram";
-import { Linkedin } from "@styled-icons/fa-brands/Linkedin";
-import { Github } from "@styled-icons/fa-brands/Github";
-import { Mail } from "@styled-icons/feather/Mail";
+import { FacebookSquare } from '@styled-icons/fa-brands/FacebookSquare';
+import { Twitter } from '@styled-icons/fa-brands/Twitter';
+import { Instagram } from '@styled-icons/fa-brands/Instagram';
+import { Linkedin } from '@styled-icons/fa-brands/Linkedin';
+import { Github } from '@styled-icons/fa-brands/Github';
+import { Mail } from '@styled-icons/feather/Mail';
 
 export const FacebookIcon = styled(FacebookSquare)`
 color: #dcddde;
@@ -77,15 +77,14 @@ const Footer = () => {
     <FooterContainer>
         <div className='footer-data'>
           <p>© 2020 - All rights reserved</p>
-          <p>Designed and built by me - Data provided by TMDb.</p>
+          <p>Designed and built by <a href='https://github.com/flofina'>me</a> - Data provided by <a href='https://www.themoviedb.org/'>TMDb</a>.</p>
         </div>
         <div className='rrss'>
-          <FacebookIcon />
-          <TwitterIcon />
-          <InstagramIcon />
-          <LinkedinIcon />
-          <GithubIcon />
-          <MailIcon />
+          <a href='https://www.facebook.com/flor.guzzi/'><FacebookIcon /></a>
+          <a href='https://twitter.com/flofina'><TwitterIcon /></a>
+          <a href='https://www.linkedin.com/in/mfguzzi/'><LinkedinIcon /></a>
+          <a href='https://github.com/flofina'><GithubIcon /></a>
+          <a href='mailto:mf.guzzi@gmail.com'><MailIcon /></a>
         </div>
     </FooterContainer>
   );

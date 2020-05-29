@@ -1,13 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-
 import useFetch from '../hooks/useFetch'; 
 import { useParams } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 import Card from './Card';
-import Overview from './Overview.js';
+import Overview from './Overview';
 
 const Data = styled.section`
   padding: 30px 50px 80px 50px;
@@ -27,14 +26,53 @@ const Data = styled.section`
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
   }
 `;
 
-const VerMas = () => {
-console.log('estoy en ver mAS')
-  let titulo = '';
+const PaginationContainer = styled.nav`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  .pagination {
+    width: 450px;
+    height: 45px;
+    background: #141414;
+    border-radius: 5px;
+  }
+`;
 
+const Button = styled.button`
+margin: 0px 5px;
+padding: 5px 20px;
+color: #fff;
+background-color: #141414;
+font-size: 20px;
+font-weight: bold;
+border: none;
+appearance: none;
+text-rendering: none;
+outline: none;
+cursor: pointer;
+:hover {
+  background-color: #000;
+  border-radius: 5px;
+}
+:focus {
+  background-color: #000;
+  border-radius: 5px;
+}
+`
+
+const VerMas = () => {
+
+  let titulo = '';
+  
   const params = useParams();
 
   if (params.categoria === 'trending' && params.tipo === 'movie') {
@@ -68,8 +106,13 @@ console.log('estoy en ver mAS')
   } else if (params.categoria === 'tv' && params.tipo === 'airing_today') {
     titulo = 'Series actuales';
   };
+  
+  if (params.categoria === undefined && params.tipo === undefined) {
+    params.categoria = 'search';
+    params.tipo = 'multi';
+  };
 
-  const verMasData = useFetch(`https://api.themoviedb.org/3/${params.categoria}/${params.tipo}?api_key=cdce5dbaf6cab456cd34d73a9db1ffb4`);
+  const verMasData = useFetch(`https://api.themoviedb.org/3/${params.categoria}/${params.tipo}?api_key=cdce5dbaf6cab456cd34d73a9db1ffb4${'&query=' + params.value}`);
 
   return (
     <>
@@ -77,19 +120,29 @@ console.log('estoy en ver mAS')
         <Data>
           <div className='encabezado'>
             <h3>{titulo}</h3>
-            <div className='icon'></div>
           </div>
           <div className='cards'>
             {verMasData.map(cardInfo => (
-              <Card key={cardInfo.id} info={cardInfo} />
+              <Card key={cardInfo.id} info={cardInfo} mediaType={ cardInfo.media_type || params.categoria }/>
             ))}
           </div>
-      </Data>
+          
+          <PaginationContainer>
+            <div className='pagination'>
+            <Button id='first'>{'<'}</Button>
+            <Button id='prev'>PREVIOUS</Button>
+            <Button id='next'>NEXT</Button>
+            <Button id='last'>{'>'}</Button>
+            </div>
+          </PaginationContainer>
+        </Data>
       )}
 
-      <Switch>
-        <Route path='/:categoria/:id/' component={Overview}></Route>
-      </Switch>
+      {!verMasData && (
+        <Switch>
+          <Route exact path='/:categoria/:id' component={Overview}></Route>
+        </Switch>
+      )}  
     </>
   );
 }

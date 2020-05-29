@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import Homepage from './Home.js';
-import Peliculas from './Peliculas.js';
-import Series from './Series.js';
-import VerMas from './VerMas.js';
-import Overview from './Overview.js';
+import Homepage from './Home';
+import Peliculas from './Peliculas';
+import Series from './Series';
+import VerMas from './VerMas';
+import Overview from './Overview';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Home } from "@styled-icons/feather/Home";
-import { Video } from "@styled-icons/feather/Video";
-import { Tv } from "@styled-icons/feather/Tv";
-import { Search } from "@styled-icons/feather/Search";
+import { Home } from '@styled-icons/feather/Home';
+import { Video } from '@styled-icons/feather/Video';
+import { Tv } from '@styled-icons/feather/Tv';
+import { Search } from '@styled-icons/feather/Search';
 
 export const HomeIcon = styled(Home)`
 color: #dcddde;
@@ -51,6 +51,9 @@ width: 28px;
 height: 28px;
 padding: 10px;
 margin-top: 5px;
+:hover {
+  color: #2196f3;
+}
 `
 
 const NavContainer = styled.nav`
@@ -96,27 +99,42 @@ const NavContainer = styled.nav`
 
 const Nav = () => {
 
+  const [busqueda, setBusqueda] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+  }
+
+  const handleChange = e => {
+    setBusqueda(e.target.value); 
+  }
+
   return (
     <Router>
       <NavContainer>
         <div className='menu-icons'>
           <Link to='/'><div className='icon'><HomeIcon /></div></Link>
-          <Link to='/peliculas'><div className='icon'><VideoIcon /></div></Link>
-          <Link to='/series'><div className='icon'><TvIcon /></div></Link>
+          <Link to='/movies'><div className='icon'><VideoIcon /></div></Link>
+          <Link to='/tvshows'><div className='icon'><TvIcon /></div></Link>
         </div>
         <div className='search-bar'>
           <form>
-          <div className='icon'><SearchIcon /></div>
-            <input type='text' name='search' placeholder='Búsqueda...' />
+          <Link to={'/search$q=' + busqueda}><div className='icon'><SearchIcon/></div></Link>
+            <input type='text' name='search' placeholder='Búsqueda...' 
+            value={busqueda} 
+            onChange={handleChange} 
+            onSubmit={handleSubmit}
+            />
           </form>
         </div>
       </NavContainer>
       <Switch>
         <Route exact path='/' component={Homepage}></Route>
-        <Route path='/peliculas' component={Peliculas}></Route>
-        <Route path='/series' component={Series}></Route>
-        <Route path='/:categoria/:tipo/' component={VerMas}></Route>
-        <Route path='/:categoria/:id/' component={Overview}></Route>
+        <Route path='/movies' component={Peliculas}></Route>
+        <Route path='/tvshows' component={Series}></Route>
+        <Route path='/search$q=:value' component={VerMas}></Route>
+        <Route path='/:categoria/:tipo' component={VerMas}></Route>
+        <Route path='/:categoria/:id' component={Overview}></Route>
       </Switch>
     </Router>
   );

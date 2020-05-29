@@ -1,59 +1,92 @@
-import React, {useState, useEffect} from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-
-import useFetch from '../hooks/useFetchData';
-
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import useFetch from '../hooks/useFetchData';
 
 import styled from 'styled-components';
 
 import OnScope from './OnScope';
+import OverviewInfo from './OverviewInfo';
 import OverviewVideos from './OverviewVideos';
-import OverviewSimilar from './OverviewSimilar';
+import OverviewRelated from './OverviewRelated';
+
+const NavContainer = styled.nav`
+ height: 80px;
+ display: flex;
+ justify-content: center;
+ .button-container {
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+ }
+`
+ 
+const Button = styled.button`
+height: 50px;
+padding: 10px 30px;
+color: #fff;
+background-color: #141414;
+font-size: 24px;
+font-weight: bold;
+border: none;
+appearance: none;
+text-rendering: none;
+outline: none;
+cursor: pointer;
+:hover {
+  background-color: #000;
+  border-radius: 5px;
+}
+:focus {
+  background-color: #000;
+  border-radius: 5px;
+}
+`
 
 const Overview = () => {
 
   const params = useParams();
 
   const onScopeData = useFetch(`https://api.themoviedb.org/3/${params.categoria}/${params.id}?api_key=cdce5dbaf6cab456cd34d73a9db1ffb4`);
+  const onScopeExternal = useFetch(`https://api.themoviedb.org/3/${params.categoria}/${params.id}/external_ids?api_key=cdce5dbaf6cab456cd34d73a9db1ffb4`);
+  const onScopeCredits = useFetch(`https://api.themoviedb.org/3/${params.categoria}/${params.id}/credits?api_key=cdce5dbaf6cab456cd34d73a9db1ffb4`);
+  const onScopeVideos = useFetch(`https://api.themoviedb.org/3/${params.categoria}/${params.id}/videos?api_key=cdce5dbaf6cab456cd34d73a9db1ffb4`);
+  const onScopeRelated = useFetch(`https://api.themoviedb.org/3/${params.categoria}/${params.id}/recommendations?api_key=cdce5dbaf6cab456cd34d73a9db1ffb4`);
 
-  // const backdrop = onScopeData.backdrop_path;
-  // const genres = onScopeData.genres;
-  return (
-    <Router>
-      <OnScope resultsOverview={onScopeData} genres={onScopeData.genres} />
-
-      <nav>
-      <Link to='/'><h3>INFO</h3></Link>
-      <Link to='/videos'><h3>VIDEOS</h3></Link>
-      <Link to='/similar'><h3>SIMILARES</h3></Link>
-      </nav>
-      
+  const [page, setPage] = useState('');
   
+  const handleClick = e => {
+    setPage((e.target.id));
+  };
 
-      <Switch>
-        <Route exact path='/' component={Overview}></Route>
-        <Route path='/videos' component={OverviewVideos}></Route>
-        <Route path='/similar' component={OverviewSimilar}></Route>
-      </Switch>
-    </Router>
+  const paginacion = {
+    info: <OverviewInfo data={onScopeData} cast={onScopeCredits.cast} external={onScopeExternal} />,
+    videos: <OverviewVideos videos={onScopeVideos} />,
+    related: <OverviewRelated related={onScopeRelated} mediaType={params.categoria} />,
+  }  
+
+  return (
+    <>
+      <OnScope resultsOverview={onScopeData} trailer={onScopeVideos} id={onScopeData.id} mediaType={params.categoria}/>
+      
+      <NavContainer>
+        <div className='button-container'>
+          <Button id='info' onClick={handleClick}>INFO</Button>
+          <Button id='videos' onClick={handleClick}>VIDEOS</Button>
+          <Button id='related' onClick={handleClick}>RELATED</Button>
+        </div>
+      </NavContainer>
+
+      {!page &&
+      <OverviewInfo data={onScopeData} cast={onScopeCredits.cast} external={onScopeExternal} />
+      }
+            
+      {
+        paginacion[page]
+      }
+    </>
   );
 }
 
 export default Overview;
-
-// En esta pantalla vamos a ver los detalles de la película en la que hicimos click. El layout tiene dos secciones:
-// - Una sección donde vemos la información general de la película (título, rating, cantidad de reviews, año de estreno, duración y la descripción).
-// - Otra sección donde vamos a tener 3 tabs: 1) Información; 2) Videos; 3) Similares
-
-// La solapa información va a tener la imagen de la película, y una lista de características de la misma (esta información sale del mismo resultado de la API). 
-// Además deberá mostrar un listado de íconos con links externos (imdb, facebook, web site, etc), y el listado del cast.
-
-// APIs: 
-// - Detalle: https://developers.themoviedb.org/3/movies/get-movie-details
-// - Links externos: https://developers.themoviedb.org/3/movies/get-movie-external-ids
-// - Cast: https://developers.themoviedb.org/3/movies/get-movie-credits 
-
-// La solapa Videos va a mostrar una lista de vídeos que salen directamente de la API: https://developers.themoviedb.org/3/movies/get-movie-videos 
-
-// La solapa Similares va a mostrar, en el mismo formato que el listado de películas antes planteado, una lista de las películas relacionadas a la que estamos viendo actualmente. Las mismas salen del endpoint https://developers.themoviedb.org/3/movies/get-movie-recommendations 

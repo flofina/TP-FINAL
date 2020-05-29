@@ -1,11 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import Card from './Card.js';
+import Card from './Card';
 
-import { ArrowRight } from "@styled-icons/feather/ArrowRight";
+import { ArrowRight } from '@styled-icons/feather/ArrowRight';
 
 export const ArrowIcon = styled(ArrowRight)`
 color: #2196f3;
@@ -37,24 +37,54 @@ const Data = styled.section`
   }
 `;
 
-const DataContainer = ({results, titulo, categoria, tipo}) => {
+const DataContainer = ({resultsTrending, resultsMovie, resultsSerie, categoria, tipo, tiempo, titulo} ) => {
   
-  const cardData = results;
+  const cardDataTrending = resultsTrending;
+  const cardDataMovie = resultsMovie;
+  const cardDataSerie = resultsSerie;
 
   return (
     <>
-      { results && (
+      { resultsTrending && tiempo && (
+        <Data>
+          <div className='encabezado'>
+            <h3>{titulo}</h3>
+            <div className='icon'><Link to={categoria + '/' + tipo + '/' + tiempo}><ArrowIcon /></Link></div>
+          </div>
+          <div className='cards'>
+            {cardDataTrending.map(cardInfo => (
+              <Card key={cardInfo.id} info={cardInfo} mediaType={cardInfo.media_type}/>
+            ))}
+          </div>
+        </Data>           
+      )}
+
+      { resultsMovie && (
         <Data>
           <div className='encabezado'>
             <h3>{titulo}</h3>
             <div className='icon'><Link to={categoria + '/' + tipo}><ArrowIcon /></Link></div>
           </div>
           <div className='cards'>
-            {cardData.map(cardInfo => (
-              <Card key={cardInfo.id} info={cardInfo} categoria={categoria}/>
+            {cardDataMovie.map(cardInfo => (
+              <Card key={cardInfo.id} info={cardInfo} mediaType={categoria}/>
             ))}
           </div>
-        </Data>  
+        </Data> 
+      )}
+
+      { resultsSerie && (
+        <Data>
+          <div className='encabezado'>
+            <h3>{titulo}</h3>
+            <div className='icon'><Link to={categoria + '/' + tipo}><ArrowIcon /></Link></div>
+          </div>
+          <div className='cards'>
+            {cardDataSerie.map(cardInfo => (
+              <Card key={cardInfo.id} info={cardInfo} mediaType={categoria}/>
+            ))}
+          </div>
+        </Data>           
       )}
     </>
   );

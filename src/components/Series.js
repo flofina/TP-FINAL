@@ -12,10 +12,10 @@ const Series = () => {
 
   return (
     <>
-      <DataContainer results={popular} titulo={'Series populares'} categoria={'tv'} tipo={'popular'}/>
-      <DataContainer results={topRated} titulo={'Series con mejores críticas'} categoria={'tv'} tipo={'top_rated'}/>
-      <DataContainer results={onAir} titulo={'Series al aire'} categoria={'tv'} tipo={'on_the_air'}/>
-      <DataContainer results={airToday} titulo={'Series actuales'} categoria={'tv'} tipo={'airing_today'}/>
+      <DataContainer resultsSerie={popular} titulo={'Series populares'} categoria={'tv'} tipo={'popular'}/>
+      <DataContainer resultsSerie={topRated} titulo={'Series con mejores críticas'} categoria={'tv'} tipo={'top_rated'}/>
+      <DataContainer resultsSerie={onAir} titulo={'Series al aire'} categoria={'tv'} tipo={'on_the_air'}/>
+      <DataContainer resultsSerie={airToday} titulo={'Series actuales'} categoria={'tv'} tipo={'airing_today'}/>
     </>
   );
 }
