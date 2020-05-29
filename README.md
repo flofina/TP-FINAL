@@ -1,3 +1,27 @@
+COMENTARIOS PARA MALE >>
+
+Male, te comento que me faltó terminar varias cosas, las cuales te detallo a continuación:
+
+* BUSQUEDA - solo funciona haciendo clicki en el icono de la lupa, si aprieto enter me vuelve al home.
+* SERIES - no llegue a acondicionar el componente para que reciba datos de series, por lo tanto, el menu de INFO/VIDEOS/RELATED me muestra la info como si fuera una pelicula, en cambio deberia mostrar por ejemplo EPISODIOS, y la información que trae está incompleta porque no hice las modificaciones correspondientes para adaptarlo a SERIE (creo que solo tengo que modificar INFO).
+* PAGINACION - solo está maquetado y presentado, pero no está funcional.
+* RATING - el código es asqueroso, quiero corregirlo para que todo se maneje por medio de ifs, no que se muestren todos esos p horribles en el return, lo hice una vez, ahí quedó y me olvide de corregirlo jaja
+* RESPONSIVE - ni empecé!!
+* COMPONENTE RELATED - en teoria funcionaba, al hacer click en las peliculas relacionadas te mostraba el detalle de esa pelicula, pero algo toqué y ahora te manda a cualquier lado, tengo que revisar.
+* CONVERTIRLO - me falta convertirlo para que se pueda compartir el link del tp y lo pueda ver cualquiera
+
+ADICIONALES (nada importante pero quiero ver si puedo arreglarlo):
+
+* NAV - no pude lograr que me quede el icono azul cuando esta seleccionado, estimo que tiene que ver con styled-components, solo cambia de color en hover.
+* VIDEOS - se me abren en Youtube, quisiera que se muestren dentro de la pagina, creo que era con iframe pero lo probé una vez, no salió y lo dejé para después. Si no, al hacer click, ni siquiera se abre en una pestaña nueva, pierdo la página.
+
+CREO que para el lunes puedo tener lo que falta, pero ahora la página funciona relativamente de forma completa asique te lo voy a entregar, y en todo caso cuando haya solucionado esos temas, lo subo de nuevo para que me lo mires.
+
+Besos Male!!
+
+
+=========================================================================================================================
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
