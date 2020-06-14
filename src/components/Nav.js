@@ -14,6 +14,7 @@ import { Video } from '@styled-icons/feather/Video';
 import { Tv } from '@styled-icons/feather/Tv';
 import { Search } from '@styled-icons/feather/Search';
 
+// atencion al tabulado aqui, el css deberia estar un tabulado despues que la declaracion de HomeIcon, VideoIcon, etc. 
 export const HomeIcon = styled(Home)`
 color: #dcddde;
 width: 30px;
@@ -98,7 +99,6 @@ const NavContainer = styled.nav`
 `;
 
 const Nav = () => {
-
   const [busqueda, setBusqueda] = useState('');
 
   const handleSubmit = e => {
@@ -108,6 +108,20 @@ const Nav = () => {
   const handleChange = e => {
     setBusqueda(e.target.value); 
   }
+
+  // Tu busqueda anda mal (se envia al hacer enter) porque el handleSubmit esta en el input cuando tendria que estar
+  // en la etiqueta form 
+  // <form onSubmit={handleSubmit}>
+  // Un segundo problema es que no podemos usar useHistory y history.push en este componente, porque el Router esta aca 
+  // (no podemos usar useHistory antes de que exista el router). Una solucion seria mover el Router a <App>, 
+  // aunque entiendo que implicaria mover el Footer. 
+  // Una vez hecho eso, podemos importar useHistory, declarar la variable history, y una vez hecho eso, 
+  // en la funcion handleSubmit, escribir: 
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //  history.push('/search$q=' + busqueda)
+  // }
+  // para que el usuario pueda buscar usando enter, que es el comportamiento mas habitual. 
 
   return (
     <Router>
@@ -128,6 +142,9 @@ const Nav = () => {
           </form>
         </div>
       </NavContainer>
+
+      {/* Como comente mas arriba, seria ideal que este router este en App asi 
+      podemos usar history.push aqui */}
       <Switch>
         <Route exact path='/' component={Homepage}></Route>
         <Route path='/movies' component={Peliculas}></Route>

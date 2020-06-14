@@ -64,6 +64,9 @@ const Overview = () => {
     info: <OverviewInfo data={onScopeData} cast={onScopeCredits.cast} external={onScopeExternal} />,
     videos: <OverviewVideos videos={onScopeVideos} />,
     related: <OverviewRelated related={onScopeRelated} mediaType={params.categoria} />,
+    // podriamos agregar aca una propiedad mas:
+    // overview: <OverviewInfo data={onScopeData} cast={onScopeCredits.cast} external={onScopeExternal} />
+    // si iniciamos el estado page en "overview", no tenemos que hacer el !page de la linea 84, con paginacion[page] alcanza
   }  
 
   return (

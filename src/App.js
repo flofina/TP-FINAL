@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+// no estamos usando App.css ni index.css, asi que deberiamos borrarlo. 
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 
