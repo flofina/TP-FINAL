@@ -75,6 +75,11 @@ const VerMas = () => {
   
   const params = useParams();
 
+  // en lugar de modificar params.tipo, hagamos una variable nueva. 
+  // en general, nunca es buena practica modificar las props que recibe un componente. 
+  
+  // por otro lado, quiza este codigo fuera mas claro con un objeto en lugar de una serie de if encadenados 
+
   if (params.categoria === 'trending' && params.tipo === 'movie') {
     params.tipo = 'movie/week';
   } else if (params.categoria === 'trending' && params.tipo === 'tv') {

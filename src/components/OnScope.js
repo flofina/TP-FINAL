@@ -106,6 +106,9 @@ const Main = ({results, id, resultsOverview, mediaType}) => {
   const onScopeTrailer = useFetch(`https://api.themoviedb.org/3/${mediaType}/${id}/videos?api_key=cdce5dbaf6cab456cd34d73a9db1ffb4`);
   const trailerResults = onScopeTrailer.results;
   const trailerKey = trailerResults;
+
+  // Fijate de tratar que tu componente se pueda adaptar tanto a results como a resultsOverview
+  // para repetir menos codigo tan similar
   
   return (
     <MainContainer>

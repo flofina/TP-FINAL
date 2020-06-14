@@ -10,6 +10,7 @@ const Home = () => {
   const trendingMovie = useFetch('https://api.themoviedb.org/3/trending/movie/week?api_key=cdce5dbaf6cab456cd34d73a9db1ffb4');
   const trendingTv = useFetch('https://api.themoviedb.org/3/trending/tv/week?api_key=cdce5dbaf6cab456cd34d73a9db1ffb4');
 
+  // me encanta esto
   const randomMovie = onScope[Math.floor(Math.random() * 10)];
 
   return (

@@ -39,9 +39,33 @@ const Data = styled.section`
 
 const DataContainer = ({resultsTrending, resultsMovie, resultsSerie, categoria, tipo, tiempo, titulo} ) => {
   
+  // por que aca estas declarando nuevas variables para las props? 
+  // Me llama la atencion porque despues en el JSX usas ambas, por ejemplo { resultsTrending && 
+
   const cardDataTrending = resultsTrending;
   const cardDataMovie = resultsMovie;
   const cardDataSerie = resultsSerie;
+
+  // En este componente tenemos tres renderizados diferentes de acuerdo a las props, 
+  // pero la estructura es muy parecida. 
+  // Seria mejor adaptarlo para que sirva uno solo en todos los casos. 
+  // Por ejemplo, en lugar de 
+
+  // { resultsTrending && tiempo && ( <Link to={categoria + '/' + tipo + '/' + tiempo}>
+
+  // y 
+
+  // { resultsMovie && ( <Link to={categoria + '/' + tipo}>
+
+  // yo haria una variable antes del return
+
+  // let link = '' 
+  // if (resultsTrending && tiempo) link = categoria + '/' + tipo + '/' + tiempo
+  // else if (resultsMovie) link = categoria + '/' + tipo
+
+  // Y en el JSX:
+
+  // Link to={link}
 
   return (
     <>

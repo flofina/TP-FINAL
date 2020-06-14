@@ -37,6 +37,8 @@ const OverviewRelated = ({related, mediaType}) => {
 
   const overviewRelated = related.results;
   
+  // no es buena practica modifcar las props
+  // es preferible que declares una nueva variable
   if (mediaType === 'tv') {
     mediaType = 'TV shows'
   } else if (mediaType === 'movie') {

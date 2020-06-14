@@ -31,6 +31,10 @@ const StarsContainer = styled.div`
 
 const Rating = ({ratingInfo}) => {
 
+  // Increible que hayas hecho esto desde cero! Crei que habias usado una libreria. Excelente trabajo!!!
+  // Para no tener que hacer esto de nuevo la proxima, chusmeate por ejemplo Material UI:
+  //  https://material-ui.com/components/rating/
+
     return (
       <StarsContainer>       
         <div className='rating'>
